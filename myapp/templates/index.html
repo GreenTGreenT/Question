@@ -1,0 +1,17 @@
+<html>
+   <body>
+      <center>
+         <form method="POST" action="/createpage/">
+            <input type="submit" id="create" name="create" value="Create Question"></center>
+            {% csrf_token %}         
+         </form>
+      <br>
+      <br>
+      <h3>Question</h3>
+         <ul>
+      {% for question in question_list %}
+         <li><a href="/detail/{{ question.id }}">{{ question.question_text }}</a></li>
+      {% endfor %}
+         </ul>
+   </body>
+</html>

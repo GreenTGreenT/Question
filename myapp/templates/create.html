@@ -1,0 +1,17 @@
+<html>
+<body>
+<form method="POST" action="/create/" >
+             Question: <input name="question" id="question" placeholder="Enter your question" style="width=500px" />
+
+             </br>
+             Answer: </br><input  name="answer" id="answer" placeholder="Enter your answer" style="width=500">
+             </br>
+             </br>
+        
+             <input type="submit" name="create_button" value="create"/>
+
+             {% csrf_token %}
+             
+         </form>
+</body>
+</html>
