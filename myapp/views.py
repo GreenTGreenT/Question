@@ -18,24 +18,20 @@ def results(request, question_id):
 
 def keep_results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    items = Question.objects.get(id=question_id)
+    #items = Question.objects.get(id=question_id)
     if request.method == 'POST':
        answer = request.POST.get('choice')
        check_answer = Question.objects.get(id=question_id).choice_text
-       vote = Vote.object.get(connect=items)
-       to_plus = vote.vote_true 
+       vote = Vote.objects.get(connect=question_id)
+      
        if answer == check_answer:
-          to_plus += 1
+          vote.vote_true += 1
           vote.save()
-          point = Vote.objects.get(connect=items).vote_true
-          return render(request, 'results_t.html', {'point':point})
+          return render(request, 'results_t.html', {'vote':vote})
        else:
-          keep = Vote.objects.get(connect=question_id)
-          keep.vote_false += 1
-          keep.save()
-          
-          point = Vote.objects.get(connect=question_id).vote_false
-          return render(request, 'results_f.html', {'point':point})
+          vote.vote_false += 1
+          vote.save()
+          return render(request, 'results_f.html', {'vote':vote})
 
 def create_page(request):
     return render(request, 'create.html')
@@ -47,8 +43,6 @@ def create(request):
        
         v = Vote(vote_true=0, vote_false=0, connect=q)
         v.save()
-        #Question.objects.create(question_text=request.POST.get('question', ''),
-             #choice_text=request.POST.get('answer', '')),
         return redirect('/')
     items = Question.objects.all()
     return render(request, 'index.html', {'items': items})
