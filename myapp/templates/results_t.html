@@ -1,6 +1,12 @@
-<h1>Your answer is True</h1>
-<p>Correct:{{ vote.vote_true }}
+<h1>Your answer is Correct!</h1>
+<p>Number of people who answered <b>correctly</b>:  {{ vote.vote_true }}
 <br>
-<p>Wrong:{{ vote.vote_false }}  
+<p>Number of people who answered <b>wrong</b>:  {{ vote.vote_false }}
+<br>
+<p>Number of people who answered this question:   {{  vote.vote_total }}  
+<form method="POST" action="/">
+    <input type="submit" id="back_home"value="Home" />
+    {% csrf_token %}
+</form>
 
 

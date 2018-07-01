@@ -26,6 +26,7 @@ class NewVisitorTest(unittest.TestCase):
     input_question = self.browser.find_element_by_id('question')
     input_choice1 = self.browser.find_element_by_id('choice1')
     input_choice2 = self.browser.find_element_by_id('choice2')
+    input_choice3 = self.browser.find_element_by_id('choice3')
     input_answer = self.browser.find_element_by_id('answer')
 
     self.assertEqual(input_question.get_attribute('placeholder'),'Enter your question')
@@ -36,6 +37,9 @@ class NewVisitorTest(unittest.TestCase):
     time.sleep(2)
     self.assertEqual(input_choice2.get_attribute('placeholder'),'Enter your choice')
     input_choice2.send_keys('Pink')
+    time.sleep(2)
+    self.assertEqual(input_choice3.get_attribute('placeholder'),'Enter your choice')
+    input_choice3.send_keys('Green')
     time.sleep(2)
     self.assertEqual(input_answer.get_attribute('placeholder'),'Enter your answer')
     input_answer.send_keys('Blue')
@@ -59,7 +63,11 @@ class NewVisitorTest(unittest.TestCase):
     check_url_results= self.browser.current_url
     self.assertRegex(check_url_results, '/keepresults/*')
     time.sleep(2)
- 
+
+    input_home = self.browser.find_element_by_id('back_home')
+    input_home.click()
+    check_url_results= self.browser.current_url
+    self.assertRegex(check_url_results, '/')
 
 
     

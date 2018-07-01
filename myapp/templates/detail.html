@@ -3,6 +3,7 @@
    <form method="POST" action="/keepresults/{{ question.id }}">
       <dd><input name="answer_q" id="answer_q" type="radio" value="{{question.choice_text1}}">{{question.choice_text1}}</dd>
       <dd><input name="answer_q" id="answer_q" type="radio" value="{{question.choice_text2}}">{{question.choice_text2}}</dd>
+      <dd><input name="answer_q" id="answer_q" type="radio" value="{{question.choice_text3}}">{{question.choice_text3}}</dd>
       </br>
       <input type="submit" id="create_ans"value="Submit" />
       {% csrf_token %}
