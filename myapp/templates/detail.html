@@ -1,7 +1,9 @@
-<h1>Please answer True or False</h1>
+<h1>Please answer the question</h1>
 <h3>{{ question.question_text }}</h3>
    <form method="POST" action="/keepresults/{{ question.id }}">
-      <input type="text" name="choice" id="choice" />
+      <dd><input name="answer_q" id="answer_q" type="radio" value="{{question.choice_text1}}">{{question.choice_text1}}</dd>
+      <dd><input name="answer_q" id="answer_q" type="radio" value="{{question.choice_text2}}">{{question.choice_text2}}</dd>
+      </br>
       <input type="submit" id="create_ans"value="Submit" />
       {% csrf_token %}
    </form>

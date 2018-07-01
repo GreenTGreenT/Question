@@ -1,15 +1,21 @@
 <html>
 <body>
+<h1>Create your question</h1>
+</br>
 <form method="POST" action="/create/" >
              Question: <input name="question" id="question" placeholder="Enter your question" style="width=500px" />
 
              </br>
-             Answer: </br><input  name="answer" id="answer" placeholder="Enter your answer" style="width=500">
+             Choice: <li><input type="text" name="choice1" id="choice1" placeholder="Enter your choice" style="width=500px"/></li>
+                     </br>
+                     <li><input type="text" name="choice2" id="choice2" placeholder="Enter your choice" style="width=500px"/></li>
              </br>
              </br>
-        
+             Answer:  <input name="answer" id="answer" placeholder="Enter your answer" style="width=500px" />
+             </br>
+             </br>
              <input type="submit" name="create_button" value="create"/>
-
+             
              {% csrf_token %}
              
          </form>

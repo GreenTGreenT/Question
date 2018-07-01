@@ -9,7 +9,7 @@ class NewVisitorTest(unittest.TestCase):
     self.browser = webdriver.Firefox()
 
   def tearDown(self):
-    time.sleep(10)
+    time.sleep(7)
     self.browser.quit()
   
   def test_can_start_a_list_and_retrieve_it_later(self):
@@ -22,30 +22,37 @@ class NewVisitorTest(unittest.TestCase):
     check_button_create.click()
     check_url_create= self.browser.current_url
     self.assertRegex(check_url_create, '/createpage')
-    time.sleep(2)
  
     input_question = self.browser.find_element_by_id('question')
+    input_choice1 = self.browser.find_element_by_id('choice1')
+    input_choice2 = self.browser.find_element_by_id('choice2')
     input_answer = self.browser.find_element_by_id('answer')
 
     self.assertEqual(input_question.get_attribute('placeholder'),'Enter your question')
-    input_question.send_keys('Dog have 4 legs')
-   
+    input_question.send_keys('What is color of the sky?')
+    time.sleep(2)
+    self.assertEqual(input_choice1.get_attribute('placeholder'),'Enter your choice')
+    input_choice1.send_keys('Blue')
+    time.sleep(2)
+    self.assertEqual(input_choice2.get_attribute('placeholder'),'Enter your choice')
+    input_choice2.send_keys('Pink')
+    time.sleep(2)
     self.assertEqual(input_answer.get_attribute('placeholder'),'Enter your answer')
-    input_answer.send_keys('True')
-    time.sleep(3)
+    input_answer.send_keys('Blue')
+    time.sleep(2)
 
     submit_button = self.browser.find_element_by_name('create_button')
     submit_button.click()
     time.sleep(2)
 
-    find_text = self.browser.find_element_by_id('q2')
+    find_text = self.browser.find_element_by_id('1')
 
-    self.assertEqual(find_text.get_attribute('name'), 'Dog have 4 legs')
+    self.assertEqual(find_text.get_attribute('name'), 'What is color of the sky?')
     find_text.click()
     time.sleep(2)
 
-    find_ans = self.browser.find_element_by_id('choice')
-    find_ans.send_keys('True')
+    find_ans = self.browser.find_element_by_id('answer_q')
+    find_ans.click()
     submit_button2 = self.browser.find_element_by_id('create_ans')
     submit_button2.click()
  

@@ -20,8 +20,8 @@ def keep_results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     #items = Question.objects.get(id=question_id)
     if request.method == 'POST':
-       answer = request.POST.get('choice')
-       check_answer = Question.objects.get(id=question_id).choice_text
+       answer = request.POST.get('answer_q')
+       check_answer = Question.objects.get(id=question_id).the_answer
        vote = Vote.objects.get(connect=question_id)
       
        if answer == check_answer:
@@ -38,7 +38,8 @@ def create_page(request):
 
 def create(request):
     if request.method == 'POST':
-        q = Question(question_text=request.POST.get('question', ''), choice_text=request.POST.get('answer', '') )
+        q = Question(question_text=request.POST.get('question', ''), choice_text1=request.POST.get('choice1', ''),
+                     choice_text2=request.POST.get('choice2', ''), the_answer=request.POST.get('answer', ''))
         q.save()
        
         v = Vote(vote_true=0, vote_false=0, connect=q)

@@ -13,18 +13,12 @@ class ItemModelTest(TestCase):
         frist_question.question_text = 'Human have 2 eyes'
         frist_question.save()
         frist_answer = Question()
-        #frist_answer.choice_text = 'True'
-        #frist_answer.save()
  
         second_question = Question()
         second_question.question_text = 'Human have 3 ears'
         second_question.save()
         second_answer = Question()
-        #second_answer.choice_text = 'False'
-        #second_answer.save()
-         
 
-        #get_item = Question.objects.all()
         save_item = Question.objects.all() 
         self.assertEqual(save_item.count(),2)
 
